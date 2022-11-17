@@ -16,7 +16,6 @@ import TextField from '@mui/material/TextField';
 const RenderUpdate = (props: GridRenderCellParams<Date>) => {
     const { hasFocus, id } = props;
     
-
     return (
         <strong>
             <Button id='btn-update'
@@ -161,12 +160,12 @@ function DataGridDemo() {
     return (
         <div>
             <div className='div-carBrand'>Car Brand Table</div>
-            <Box className='DataGridDemo' sx={{ height: 400, width: '90%' }}>
+            <Box className='DataGridDemo' sx={{ height: 500, width: '90%' }}>
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
                     checkboxSelection
                     disableSelectionOnClick
                     experimentalFeatures={{ newEditingApi: true }}

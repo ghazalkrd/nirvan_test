@@ -91,22 +91,42 @@ function AddCar() {
                 console.log(error);
             });
     }
-
-    const Update = () => {
-        myAxios.get('/panel/brand/{id}')
-            .then(res => {
-                console.log(res.data)
-            }
-            );
+    const updateCarBrand = () =>{
+        myAxios.put(`/panel/brand/${id}`, {
+            title: "Hello World!",
+            body: "This is an updated post."
+          })
+          .then((res) => {
+            //setName(response.data.name);
+            res.data.name= name;
+            res.data.metaTitle = metaTitle;
+            res.data.image = image;
+            res.data.coverImage = coverImage;
+            res.data.description = description;
+            res.data.seoDescription = seoDescription;
+            res.data.url = url;
+            res.data.createDate = createDate;
+            res.data.updateDate = updateDate;
+          });
     }
 
-    useEffect(() =>{
-        myAxios.get('/panel/brand/{id}')
-        .then(res => {
-            console.log(res.data)
+    useEffect(() => {
+        if (id) {
+            myAxios.get(`/panel/brand/${id}`)
+                .then(res => {
+                    setName(res.data.name);
+                    setMetaTitle(res.data.metaTitle);
+                    setImage(res.data.image);
+                    setCoverImage(res.data.coverImage);
+                    setDescription(res.data.description);
+                    setSeoDescription(res.data.seoDescription);
+                    setUrl(res.data.url);
+                    setCreateDate(res.data.createDate);
+                    setUpdateDate(res.data.updateDate);
+                }
+                );
         }
-        );
-    },[])
+    }, [])
 
     return (
         <div>
@@ -126,6 +146,10 @@ function AddCar() {
             <Button className='addNew' variant="contained"
                 onClick={addCarBrand}>
                 Add
+            </Button>
+            <Button className='addNew' variant="contained"
+                onClick={updateCarBrand}>
+                Update
             </Button>
         </div>
     );
